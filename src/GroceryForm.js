@@ -7,20 +7,25 @@ class GroceryForm extends React.Component {
 
 handleSubmit = (e) => {
   e.preventDefault();
-  // this.props.add(this.state)
   if (this.props.id) {
     this.props.updateList( this.props.id, this.state )
   } else {
-    // add the contact to the array of obj
     this.props.add(this.state)
   }
-  // clear out the form
   this.setState({ name: "", price: "", })
 }
 
 handleChange = (e) => {
   this.setState({ [e.target.name]: e.target.value, });
 }; 
+
+
+componentDidMount() {
+  const { name  } = this.props;
+  this.setState({ name });
+}
+  
+
 
 render() {
   return (
@@ -44,7 +49,14 @@ render() {
         />
         <Form.Button>Submit</Form.Button>
       </Form.Group>
-    </Form>
+  {/* <input 
+                     type="text" 
+                     className="form-control"
+                     value={this.state.name}
+                     name="name"
+                     placeholder="name"
+                     onChange={this.updateInputValue}/> */}
+    </Form> 
   );  
 }
 }

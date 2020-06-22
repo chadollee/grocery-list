@@ -1,10 +1,8 @@
 import React, { Component} from 'react';
-// import './App.css';
-import { Container, Header, Checkbox } from "semantic-ui-react";
+import './App.css';
+import { Container, Header} from "semantic-ui-react";
 import Lists from './components/lists/Lists';
 import GroceryForm from "./GroceryForm";
-
-
 
 
 class App extends Component {
@@ -16,8 +14,6 @@ class App extends Component {
     ],
   };
     
-
-
   getId = () => {
     // NOTE We are just using this as a helper function for id's since we aren't using a db yet
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -38,36 +34,36 @@ class App extends Component {
     this.setState({ lists: [...lists], });
   };
 
-  // deleteContact = (id) => {
-  //   const contacts = this.state.contacts.filter( contact => {
-  //     if (contact.id !== id) {
-  //       return contact
-  //     }
-  //   })
-  //   this.setState({ contacts })
-  // }
+  editList = (id) => {
+    const lists = this.state.lists.filter( list => {
+      if (list.id )
+    })
+  }
+  
+  handleChange = (event) => {
+    const list = this.state.list;
+    list.name = event.target.value;
+    this.setState({ list: list });
+  };
 
-  render() {
-    
+  // render: function () {
+  //   return (
+  //     <div>
+  //     </div>
+  //   );
+  // }
+  
+  
+  render() {  
     return (
       <Container>
-        {/* <div class="ui checkbox">
-          <input type="checkbox" name="bought">
-          <label>Bought</label>
-          </input>
-        </div> */}
-
         <Header as="h1">Grocery List </Header>
         <GroceryForm add={this.addList} />
-        <Lists lists={this.state.lists} remove={this.removeList} />
+        <Lists lists={this.state.lists} remove={this.removeList} edit={this.editList} />
       </Container>
 
     );
   }
-  
-
-  
 }
-
 
 export default App;
