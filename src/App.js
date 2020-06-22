@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 // import './App.css';
-import { Container, Header, } from "semantic-ui-react";
+import { Container, Header, Checkbox } from "semantic-ui-react";
 import Lists from './components/lists/Lists';
 import GroceryForm from "./GroceryForm";
 
@@ -25,18 +25,43 @@ class App extends Component {
       .substring(1);
   };
 
-  addContact = (listData) => {
+  addList = (listData) => {
     let list = { id: this.getId(), ...listData, };
-    this.setState({ contacts: [list, ...this.state.lists], });
+    this.setState({ lists: [list, ...this.state.lists], });
   };
 
+  removeList = (id) => {
+    const lists = this.state.lists.filter( list => {
+      if (list.id !== id)
+        return list
+    });
+    this.setState({ lists: [...lists], });
+  };
+
+  // deleteContact = (id) => {
+  //   const contacts = this.state.contacts.filter( contact => {
+  //     if (contact.id !== id) {
+  //       return contact
+  //     }
+  //   })
+  //   this.setState({ contacts })
+  // }
+
   render() {
+    
     return (
       <Container>
+        {/* <div class="ui checkbox">
+          <input type="checkbox" name="bought">
+          <label>Bought</label>
+          </input>
+        </div> */}
+
         <Header as="h1">Grocery List </Header>
-        <Lists lists = {this.state.lists} />
         <GroceryForm add={this.addList} />
+        <Lists lists={this.state.lists} remove={this.removeList} />
       </Container>
+
     );
   }
   

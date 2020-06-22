@@ -1,4 +1,5 @@
 import React from "react";
+import List from "./components/lists/List";
 import { Form, } from "semantic-ui-react";
 
 class GroceryForm extends React.Component {
@@ -6,6 +7,7 @@ class GroceryForm extends React.Component {
 
 handleSubmit = (e) => {
   e.preventDefault();
+  // this.props.add(this.state)
   if (this.props.id) {
     this.props.updateList( this.props.id, this.state )
   } else {
@@ -15,7 +17,6 @@ handleSubmit = (e) => {
   // clear out the form
   this.setState({ name: "", price: "", })
 }
-
 
 handleChange = (e) => {
   this.setState({ [e.target.name]: e.target.value, });
